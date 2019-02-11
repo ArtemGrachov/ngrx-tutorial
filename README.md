@@ -1,10 +1,12 @@
 # NgrxTutorial
 
+Made with [Angular NgRx Course](https://www.youtube.com/watch?v=62JNAasgclE&list=PLaMbwDs23r4KXoMucJEyUAvamQ-kFNBvC)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for an Angular dev server and json-server (as a back-end). Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
