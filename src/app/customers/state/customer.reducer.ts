@@ -1,11 +1,15 @@
 import * as customerActions from './customer.actions';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+
 import * as fromRoot from '../../state/app-state';
 import { ICustomer } from 'src/app/customer.interface';
 
 export interface ICustomerState {
-  customers: ICustomer[];
+  ids: number[];
+  entities: { [key: number]: ICustomer };
+  selectedCustomerId: number;
   loading: boolean;
   loaded: boolean;
   error: string;
@@ -15,12 +19,18 @@ export interface IAppState extends fromRoot.IAppState {
   customers: ICustomerState
 }
 
-export const initialState: ICustomerState = {
-  customers: [],
+export const customerAdapter: EntityAdapter<ICustomer> = createEntityAdapter<ICustomer>();
+
+export const defaultCustomer: ICustomerState = {
+  ids: [],
+  entities: {},
+  selectedCustomerId: null,
   loading: false,
   loaded: false,
   error: ''
 }
+
+export const initialState: ICustomerState = customerAdapter.getInitialState(defaultCustomer);
 
 export function customerReducer(
   state: ICustomerState = initialState,
@@ -33,16 +43,15 @@ export function customerReducer(
         loading: true
       }
     case customerActions.CustomerActionTypes.LOAD_CUSTOMERS_SUCCESS:
-      return {
+      return customerAdapter.addAll(<ICustomer[]>action.payload, {
         ...state,
         loading: false,
-        loaded: true,
-        customers: <ICustomer[]>action.payload
-      }
+        loaded: true
+      })
     case customerActions.CustomerActionTypes.LOAD_CUSTOMERS_FAIL:
       return {
         ...state,
-        customers: [],
+        entities: {},
         loading: false,
         loaded: false,
         error: <string>action.payload
@@ -56,7 +65,7 @@ const getCustomerFeatureState = createFeatureSelector<ICustomerState>('customers
 
 export const getCustomers = createSelector(
   getCustomerFeatureState,
-  (state: ICustomerState) => state.customers
+  customerAdapter.getSelectors().selectAll
 );
 
 export const getCustomersLoading = createSelector(
