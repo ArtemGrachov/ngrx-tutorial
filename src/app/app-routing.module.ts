@@ -7,7 +7,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'customers',
-    loadChildren: './app/customers/customers.module#CustomersModule'
+    loadChildren: './customers/customers.module#CustomersModule'
   }
 ]
 

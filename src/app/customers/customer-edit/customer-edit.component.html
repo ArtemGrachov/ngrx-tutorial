@@ -1,3 +1,29 @@
-<p>
-  customer-edit works!
-</p>
+<form class="form-inline mb-4">
+  <label for="name" class="sr-only">Name</label>
+  <div class="input-group mb-2 mr-sm-2">
+    <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name" />
+  </div>
+
+  <label for="phone" class="sr-only">Phone</label>
+  <div class="input-group mb-2 mr-sm-2">
+    <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Phone" />
+  </div>
+
+  <label for="address" class="sr-only">Address</label>
+  <div class="input-group mb-2 mr-sm-2">
+    <input type="text" class="form-control" id="address" formControlName="address" placeholder="Address" />
+  </div>
+
+  <label for="membership" class="sr-only">Membership</label>
+  <div class="input-group mb-2 mr-sm-2">
+    <select id="membership" formControlName="membership" class="form-control">
+      <option value="basic">Basic</option>
+      <option value="pro">Pro</option>
+      <option value="platinum">Platimum</option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary mb-2">
+    Save Customer
+  </button>
+</form>
