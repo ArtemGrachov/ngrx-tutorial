@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import * as customerActions from '../state/customer.actions';
+import * as fromCustomer from '../state/customer.reducer';
 import { ICustomer } from 'src/app/customer.interface';
 
 @Component({
@@ -8,14 +12,13 @@ import { ICustomer } from 'src/app/customer.interface';
   templateUrl: './customer-list.component.html'
 })
 export class CustomerListComponent {
-  constructor(private store: Store<any>) { }
-
-  public customers: ICustomer[];
+  constructor(private store: Store<fromCustomer.IAppState>) { }
 
   public ngOnInit(): void {
-    this.store.dispatch({
-      type: 'LOAD_CUSTOMERS'
-    });
-    this.store.subscribe(state => (this.customers = state.customers.customers))
+    this.store.dispatch(new customerActions.LoadCustomers());
   }
+
+  public customers$: Observable<ICustomer[]> = this.store.pipe(
+    select(fromCustomer.getCustomers)
+  )
 }

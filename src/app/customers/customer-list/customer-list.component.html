@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let customer of customers">
+    <tr *ngFor="let customer of (customers$ | async)">
       <td scope="row">{{customer.name}}</td>
       <td>{{customer.phone}}</td>
       <td>{{customer.address}}</td>
