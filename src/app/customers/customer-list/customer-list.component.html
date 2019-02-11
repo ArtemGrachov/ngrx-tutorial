@@ -10,11 +10,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td scope="row">-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
+    <tr *ngFor="let customer of customers">
+      <td scope="row">{{customer.name}}</td>
+      <td>{{customer.phone}}</td>
+      <td>{{customer.address}}</td>
+      <td>{{customer.membership}}</td>
       <td>
         <a>edit</a>
         <br>
