@@ -28,6 +28,13 @@ export class CustomerService {
     );
   }
 
+  public updateCustomer(payload: ICustomer): Observable<ICustomer> {
+    return this.http.patch<ICustomer>(
+      `${this.customersUrl}/${payload.id}`,
+      payload
+    );
+  }
+
   public deleteCustomer(payload: number): Observable<any> {
     return this.http.delete(`${this.customersUrl}/${payload}`);
   }

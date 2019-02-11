@@ -10,15 +10,23 @@
     </tr>
   </thead>
   <tbody>
+    <tr *ngIf="error$ | async as error">
+      <td colspan="5" class="alert alert-danger">
+        {{error}}
+      </td>
+    </tr>
     <tr *ngFor="let customer of (customers$ | async)">
       <td scope="row">{{customer.name}}</td>
       <td>{{customer.phone}}</td>
       <td>{{customer.address}}</td>
       <td>{{customer.membership}}</td>
       <td>
-        <a>edit</a>
-        <br>
-        <a>delete</a>
+        <button class="btn btn-sm btn-secondary mr-1" (click)="editCustomer(customer)">
+          Edit
+        </button>
+        <button class="btn btn-sm btn-warning" (click)="deleteCustomer(customer)">
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>

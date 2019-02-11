@@ -1,5 +1,6 @@
 {
-  "customers": [{
+  "customers": [
+    {
       "name": "John Doe",
       "phone": "910928392098",
       "address": "123 Sub Street",
@@ -12,6 +13,13 @@
       "address": "893 Main Voulevard",
       "membership": "Pro",
       "id": 2
+    },
+    {
+      "name": "Ivan Sidorov",
+      "phone": "555-333-222",
+      "address": "Ivanov str., 42",
+      "membership": "pro",
+      "id": 3
     }
   ]
 }
